@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pl" ng-app='Crm'>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>Kurs AngularJS (eduweb.pl)</title>
+
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:700,300,600,400&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+
+        <link href="css/bootstrap.css" rel="stylesheet">
+        <link href="css/styles.css" rel="stylesheet">
+    </head>
+    <body>
+
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+        </nav>
+
+        <div class="container" ng-controller="MainController">
+
+<!-- wyszukiwanie -->
+<div class="row">
+    <div class="col-xs-12">
+        <div class="flat-panel">
+
+            <div class="flat-panel-header">
+                <h1 class="flat-panel-heading text-center">Sortowanie, wyszukiwanie i filtracja</h1>
+                </br>
+                <ol>
+                  <li>Wyszukiwanie działa dynamicznie w trzech obszarach (pesel, nazwisko, stanowisko)</li>
+                  <li>Sortowanie działa dynamicznie na każdej kolumnie.</li>
+                </ol>
+            </div>
+                </br>
+            <div class="flat-panel-body">
+                <div class="form-horizontal">
+                    <div class="row">
+                        <div class="col-xs-12 col-md-4">
+                            <div class="form-group">
+                                <label for="filter-company-name" class="col-sm-3 col-xs-12 control-label">Wyszukaj</label>
+
+                                <div class="col-sm-9 col-xs-12">
+                                    <input id="filter-pesel" ng-model="filterBy.pesel" type="text" class="form-control" placeholder="Podaj pesel">
+                                </div>
+                            </div>
+                        </div>
+
+                         <div class="col-xs-12 col-md-4">
+                             <div class="form-group">
+                                 <label for="filter-company-name" class="col-sm-3 col-xs-12 control-label">Wyszukaj</label>
+
+                                 <div class="col-sm-9 col-xs-12">
+                                     <input id="filter-nazwisko" ng-model="filterBy.surname" type="text" class="form-control" placeholder="Podaj nazwisko">
+                                 </div>
+                             </div>
+                         </div>
+
+                       <div class="col-xs-12 col-md-4">
+                           <div class="form-group">
+                               <label for="filter-company-name" class="col-sm-3 col-xs-12 control-label">Wyszukaj</label>
+
+                               <div class="col-sm-9 col-xs-12">
+                                   <input id="filter-stanowisko" ng-model="filterBy.position" type="text" class="form-control" placeholder="Podaj stanowisko">
+                               </div>
+                           </div>
+                       </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<div class="row">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                             <th><span class="btn" ng-click="changeOrder('id')"> Id                 <i ng-show = "isOrderedBy('id')"     class = "glyphicon" ng-class="{'glyphicon-chevron-up': !isOrderedReverse(), 'glyphicon-chevron-down': isOrderedReverse()}"</i></span></th>
+                             <th><span class="btn" ng-click="changeOrder('name')"> Imię             <i ng-show = "isOrderedBy('name')"    class = "glyphicon" ng-class="{'glyphicon-chevron-up': !isOrderedReverse(), 'glyphicon-chevron-down': isOrderedReverse()}"</i></span></th>
+                             <th><span class="btn" ng-click="changeOrder('surname')"> Nazwisko      <i ng-show = "isOrderedBy('surname')" class = "glyphicon" ng-class="{'glyphicon-chevron-up': !isOrderedReverse(), 'glyphicon-chevron-down': isOrderedReverse()}"</i></span></th>
+                             <th><span class="btn" ng-click="changeOrder('gender')">Płeć            <i ng-show = "isOrderedBy('gender')"  class = "glyphicon" ng-class="{'glyphicon-chevron-up': !isOrderedReverse(), 'glyphicon-chevron-down': isOrderedReverse()}"</i></span></th>
+                             <th><span class="btn" ng-click="changeOrder('position')">Stanowisko    <i ng-show = "isOrderedBy('position')" class = "glyphicon" ng-class="{'glyphicon-chevron-up': !isOrderedReverse(), 'glyphicon-chevron-down': isOrderedReverse()}"</i></span></th>
+                             <th><span class="btn" ng-click="changeOrder('pesel')">pesel            <i ng-show = "isOrderedBy('pesel')"     class = "glyphicon" ng-class="{'glyphicon-chevron-up': !isOrderedReverse(), 'glyphicon-chevron-down': isOrderedReverse()}"</i></span></th>
+                        </tr>
+                    </thead>
+                    <tbody class="no-border">
+                            <tr ng-repeat="user in users | filter: filterBy |orderBy: orderByColumn : orderByDir">
+                            <td>{{ user.id }}</td>
+                            <td>{{ user.name }}</td>
+                            <td>{{ user.surname }}</td>
+                            <td>{{ user.gender }}</td>
+                            <td>{{ user.position }}</td>
+                            <td>{{ user.pesel }}</td>
+                            <td class="text-center"><a href="/#/users/{{ user.id }}" class="label label-success">Szczegóły</a></td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+        <script src="js/jquery.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/angular.min.js"></script>
+        <script src="js/animate.js"></script>
+
+
+        <script>
+          var app = angular.module('Crm',[]);
+          app.controller('MainController', ['$scope', function($scope){
+
+         $scope.users = [
+             { id:1, name: 'Mirosława',   surname: 'Wesołowska',   gender: 'Mężczyzna',    position: 'kasjer',    pesel: 78090909990},
+             { id:3, name: 'Maciej',      surname: 'Nowak',        gender: 'Mężczyzna',    position: 'prezes',    pesel: 79090909990},
+             { id:2, name: 'Tomasz',      surname: 'Jastrzębski',  gender: 'Mężczyzna',    position: 'księgowy',  pesel: 70090609990},
+             { id:4, name: 'Zygmunt',     surname: 'Piotrowski',   gender: 'Mężczyzna',    position: 'księgowy',  pesel: 90090109990},
+             { id:6, name: 'Katarzyna',   surname: 'Adamowicz',    gender: 'Kobieta',      position: 'kasjer',    pesel: 97090709990},
+             { id:8, name: 'Andrzej',     surname: 'Duży',         gender: 'Mężczyzna',    position: 'hr',        pesel: 76090309990},
+             { id:7, name: 'Dorota',      surname: 'Kowalewska',   gender: 'Kobieta',      position: 'it',        pesel: 79090509990},
+             { id:9, name: 'Adrianna',    surname: 'Góra',         gender: 'Kobieta',      position: 'technik',   pesel: 79090909990},
+             { id:10, name: 'Zuzanna',     surname: 'Tyc',          gender: 'Kobieta',     position: 'trener',    pesel: 72090609990},
+             { id:11, name: 'Grzegorz',    surname: 'Filipiak',     gender: 'Mężczyzna',   position: 'lekarz',    pesel: 80090809990},
+             { id:5, name: 'Mirosława',   surname: 'Wesołowska',   gender: 'Mężczyzna',    position: 'kasjer',    pesel: 90709090990}
+         ];
+
+            // SORT
+
+            $scope.orderByColumn = 'id';
+            $scope.orderByDir = false;
+
+          $scope.changeOrder = function(columnName){
+          if($scope.orderByColumn == columnName){
+            $scope.orderByDir = !$scope.orderByDir;
+            }
+          else{$scope.orderByColumn = columnName;
+              $scope.orderByDir = false;
+          }
+          };
+
+          $scope.isOrderedBy = function(columnName){
+            return ($scope.orderByColumn == columnName);
+          };
+          $scope.isOrderedReverse = function(){
+            return !$scope.orderByDir;
+
+          };
+
+          //FILTER SEARCH
+            $scope.filterBy = {};
+          }]);
+
+
+
+        </script>
+    </body>
+</html>

@@ -1,0 +1,119 @@
+/*
+COLORS
+Default Black: #333
+Cherry : #F45C43
+Sunrise Red: #FF512F
+Innocent Blue: #5FC3E4
+Emerald Green: #348F50
+Startup Blue: #2196f3
+Blood Orange: #ff4b1f
+New Blue : #64b3f4
+
+*/
+*::before,
+*::after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Raleway';
+  position: relative;
+}
+body nav {
+  position: relative;
+  background-color: #FAFAFA;
+  border-right: 1px solid #c7c7c7;
+  box-shadow: 5px 5px 15px -3px rgba(10, 10, 10, 0.25);
+  width: 200px;
+}
+
+body nav.tiled span.title,
+body nav.tiled h1 {
+  background-color: #333;
+  color: #FAFAFA;
+}
+body nav span.title {
+  text-align: right;
+  padding: 10px 5px 5px;
+  display: block;
+  vertical-align: top;
+  font-size: 0.5rem;
+  color: #333;
+  text-transform: uppercase;
+}
+body nav h1 {
+  padding: 0 0 5px 5px;
+  color: #333;
+  font-family: 'Raleway';
+  font-size: 1.5rem;
+  margin: 0;
+  border-bottom: 1px solid #333;
+}
+body nav ul.control {
+  margin-top: 15px;
+  border-top: 1px solid #333;
+}
+body nav ul.alt li a:hover {
+  -webkit-box-shadow: 0 0 15px -3px rgba(10, 10, 10, 0.85);
+  -moz-box-shadow: 0 0 15px -3px rgba(10, 10, 10, 0.85);
+  box-shadow: 0 0 15px -3px rgba(10, 10, 10, 0.85);
+  background-color: inherit;
+  color: #333;
+}
+body nav ul.tiled a, body nav ul.tiled.control li a {
+  padding: 5px 0;
+}
+body nav ul.tiled a span, body nav ul.tiled.control li a span {
+  background-color: #333;
+  color: #FAFAFA;
+  text-align: center;
+  padding: 5px 0;
+  margin-right: 5px;
+}
+body nav li {
+  list-style-type: none;
+}
+body nav li.active {
+  -webkit-box-shadow: inset 0 0 15px -3px rgba(10, 10, 10, 0.85);
+  -moz-box-shadow: inset 0 0 15px -3px rgba(10, 10, 10, 0.85);
+  box-shadow: inset 0 0 15px -3px rgba(10, 10, 10, 0.85);
+  background-color: whitesmoke;
+}
+body nav li.active > a {
+  background-color: #333;
+  color: #FAFAFA;
+}
+body nav li.active ul {
+  display: block;
+}
+body nav li ul {
+  display: none;
+  margin-left: 35px;
+}
+body nav li ul li a {
+  color: #333;
+  margin: 0;
+  padding: 5px;
+  border-left: 2px solid #333;
+  font-size: 13px;
+}
+body nav li ul li a:hover {
+  background-color: #2e2e2e;
+  border-left-color: #2e2e2e;
+}
+body nav a {
+  color: #333;
+  padding: 10px 15px;
+  text-decoration: none;
+  display: block;
+  font-family: 'Raleway';
+}
+body nav a:hover {
+  background-color: #333;
+  color: #FAFAFA;
+}
+body nav a span {
+  width: 25px;
+}
